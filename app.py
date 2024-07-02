@@ -36,15 +36,9 @@ if status == 200:
         ws = wb.active
         ws.title = 'Dados da Tabela'
 
-        # Colocar o cabeçalho na planilha (supondo que o cabeçalho está na primeira linha da lista 'data')
-        header = data[0]
-        for col_index, header_value in enumerate(header):
-            ws.cell(row=1, column=col_index+1, value=header_value)
-
-        # Escrever os dados na planilha a partir da segunda linha
-        for row_index, row_data in enumerate(data[1:], start=2):  # Começa do índice 2 para pular o cabeçalho
-            for col_index, cell_value in enumerate(row_data):
-                ws.cell(row=row_index, column=col_index+1, value=cell_value)
+        # Escrever os dados na planilha
+        for row in data:
+            ws.append(row)
 
         # Salvar o arquivo Excel
         excel_file = 'dados_tabela.xlsx'
